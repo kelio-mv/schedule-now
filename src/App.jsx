@@ -4,7 +4,7 @@ import MainArea from "./components/MainArea";
 import "./App.css";
 
 export default function App() {
-    const [display, setDisplay] = useState("home");
+    const [display, setDisplay] = useState("today");
     const mainAreaRef = useRef();
     // If there is no attribute "tasks" in localStorage then create one
     if (!localStorage.tasks) {
@@ -16,7 +16,8 @@ export default function App() {
     return (
         <>
             <MainNav
-                onChange={(itemName) => setDisplay(itemName)}
+                selected={display}
+                onChange={(name) => setDisplay(name)}
                 displayEditor={() => mainAreaRef.current.setState({ displayEditor: true })}
             />
             <MainArea ref={mainAreaRef} display={display} />
@@ -27,4 +28,7 @@ export default function App() {
 // Adicionar icone nas notif
 // Melhorar design do date & time ou criar componentes
 // Avisar sobre importância de ativar notificação
-// a
+
+// Feedback Vinicius:
+// tive dificuldade em entender o ícone de incompleto,
+// ver se o lembrete foi criado ou não e onde ficou e

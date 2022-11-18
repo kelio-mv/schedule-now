@@ -1,7 +1,7 @@
 export default function Task(props) {
-    const shouldRender = () => {
+    function shouldRender() {
         switch (props.display) {
-            case "home":
+            case "today":
                 if (props.recurring) {
                     switch (props.frequency) {
                         case "daily":
@@ -33,7 +33,7 @@ export default function Task(props) {
             default:
                 return false;
         }
-    };
+    }
     const imgName = props.recurring ? "recurring" : "task";
 
     return (

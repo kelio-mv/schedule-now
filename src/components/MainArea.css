@@ -1,0 +1,50 @@
+#main-area {
+    flex-grow: 1;
+    height: 100vh;
+    padding: 0.5rem 1.25rem;
+    overflow-y: auto;
+}
+
+/* ---------- Task ---------- */
+
+#main-area .task {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.75rem;
+    border-bottom: 1px solid var(--clr-primary);
+    pointer-events: none;
+}
+
+#main-area .task:hover {
+    background-color: var(--clr-primary-light);
+    cursor: pointer;
+}
+
+#main-area .task .type-img {
+    width: 24px;
+    opacity: 0.6;
+}
+
+#main-area .task .info,
+#main-area .task .status-img {
+    pointer-events: auto;
+}
+
+#main-area .task .name {
+    font-size: var(--fs-medium-large);
+    font-weight: 500;
+}
+
+#main-area .task .time {
+    color: var(--clr-neutral);
+    font-size: var(--fs-medium-small);
+}
+
+#main-area .task .grow {
+    flex-grow: 1;
+}
+
+#main-area .task .status-img {
+    width: 32px;
+}

@@ -1,0 +1,49 @@
+@import url("https://fonts.googleapis.com/css2?family=Gantari:wght@400;500;600&display=swap");
+
+:root {
+    /* Colors */
+    --clr-background: rgb(249, 249, 249);
+    --clr-primary: rgb(0, 191, 255);
+    --clr-primary-light: rgb(128, 223, 255);
+    --clr-primary-dark: rgb(0, 95, 128);
+    --clr-neutral: #777;
+    --clr-neutral-light: #bbb;
+    --clr-neutral-dark: #444;
+    /* Font */
+    --fs-medium-small: 16px;
+    --fs-medium: 17px;
+    --fs-medium-large: 19px;
+    --fs-large: 21px;
+    --line-height: 1.3;
+    /* Others */
+    --border-radius: 8px;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    user-select: none;
+}
+
+html {
+    font: var(--fs-medium) "Gantari", sans-serif;
+    line-height: var(--line-height);
+}
+
+#root {
+    display: flex;
+    background-color: var(--clr-background);
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--clr-neutral-light);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--clr-neutral);
+}

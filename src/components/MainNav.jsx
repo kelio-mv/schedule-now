@@ -15,22 +15,22 @@ export default function MainNav(props) {
     return (
         <nav id="main-nav">
             <NavItem name="home" {...childProps}>
-                <img src="/home.png" alt="home-icon" />
+                <img src="home.png" alt="home-icon" />
                 <p>Início</p>
             </NavItem>
 
             <NavItem name="tasks" {...childProps}>
-                <img src="/task.png" alt="checklist-icon" />
+                <img src="task.png" alt="checklist-icon" />
                 <p>Tarefas</p>
             </NavItem>
 
             <NavItem name="recurring-tasks" {...childProps}>
-                <img src="/recurring.png" alt="recurring-icon" />
+                <img src="recurring.png" alt="recurring-icon" />
                 <p>Tarefas recorrentes</p>
             </NavItem>
 
             <NavItem name="new-task" onClick={props.displayEditor}>
-                <img src="/new-task.png" alt="new-task-icon" />
+                <img src="new-task.png" alt="new-task-icon" />
                 <p>Nova tarefa</p>
             </NavItem>
         </nav>

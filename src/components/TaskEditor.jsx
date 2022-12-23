@@ -1,4 +1,5 @@
 import React from "react";
+import { Select, Option } from "./Select.jsx";
 import "./TaskEditor.css";
 
 export default class TaskEditor extends React.Component {
@@ -22,6 +23,8 @@ export default class TaskEditor extends React.Component {
   }
 
   handleWeekDayChange = (day, checked) => {
+    // Toggle the state of the component
+    checked = !checked;
     // The day is a number between 0 and 6
     if (checked) {
       this.setState({ scheduledDays: [...this.state.scheduledDays, day] });
@@ -119,15 +122,11 @@ export default class TaskEditor extends React.Component {
       <div className="modal">
         <div className="modal-content">
           {/* Name */}
-          <p className="label">Nome</p>
-          <img
-            src="close.png"
-            alt="close-icon"
-            className="close-btn"
-            onClick={this.props.closeModal}
-          />
+          <p className="editor-label">Nome</p>
+          <img src="close.png" className="editor-close-btn" onClick={this.props.closeModal} />
 
           <input
+            className="editor-task-name"
             type="text"
             value={state.name}
             onInput={(e) => this.setState({ name: e.target.value })}
@@ -135,73 +134,50 @@ export default class TaskEditor extends React.Component {
           <hr />
 
           {/* Type */}
-          <p className="label">Tipo</p>
-          <div className="radio-inputs-container">
-            <div>
-              <input
-                type="radio"
-                id="radio-task"
-                name="type"
-                checked={state.recurring === false}
-                onChange={() => this.setState({ recurring: false })}
-              />
-              <label htmlFor="radio-task">Tarefa comum</label>
-            </div>
-            <div>
-              <input
-                type="radio"
-                id="radio-recurring-task"
-                name="type"
-                checked={state.recurring === true}
-                onChange={() => this.setState({ recurring: true })}
-              />
-              <label htmlFor="radio-recurring-task">Tarefa recorrente</label>
-            </div>
-          </div>
+          <p className="editor-label">Tipo</p>
+          <Select>
+            <Option
+              text="Tarefa comum"
+              selected={state.recurring === false}
+              onClick={() => this.setState({ recurring: false })}
+            />
+            <Option
+              text="Tarefa recorrente"
+              selected={state.recurring === true}
+              onClick={() => this.setState({ recurring: true })}
+            />
+          </Select>
           <hr />
 
           {/* Frequency */}
           {state.recurring && (
             <>
-              <p className="label">Frequência</p>
-              <div className="radio-inputs-container">
-                <div>
-                  <input
-                    type="radio"
-                    id="radio-daily"
-                    name="frequency"
-                    checked={state.frequency === "daily"}
-                    onChange={() => this.setState({ frequency: "daily" })}
-                  />
-                  <label htmlFor="radio-daily">Diária</label>
-                </div>
-                <div>
-                  <input
-                    type="radio"
-                    id="radio-weekly"
-                    name="frequency"
-                    checked={state.frequency === "weekly"}
-                    onChange={() => this.setState({ frequency: "weekly" })}
-                  />
-                  <label htmlFor="radio-weekly">Semanal</label>
-                </div>
-              </div>
+              <p className="editor-label">Frequência</p>
+              <Select>
+                <Option
+                  text="Diária"
+                  selected={state.frequency === "daily"}
+                  onClick={() => this.setState({ frequency: "daily" })}
+                />
+                <Option
+                  text="Semanal"
+                  selected={state.frequency === "weekly"}
+                  onClick={() => this.setState({ frequency: "weekly" })}
+                />
+              </Select>
 
               {/* Week Days */}
               {state.frequency === "weekly" && (
-                <div className="week-days-container">
+                <Select>
                   {this.weekDays.map((day, index) => (
-                    <div key={index}>
-                      <input
-                        type="checkbox"
-                        id={`week-day-${day}`}
-                        checked={state.scheduledDays.includes(index)}
-                        onChange={(e) => this.handleWeekDayChange(index, e.target.checked)}
-                      />
-                      <label htmlFor={`week-day-${day}`}>{day}</label>
-                    </div>
+                    <Option
+                      key={index}
+                      text={day}
+                      selected={state.scheduledDays.includes(index)}
+                      onClick={(selected) => this.handleWeekDayChange(index, selected)}
+                    />
                   ))}
-                </div>
+                </Select>
               )}
 
               <hr />
@@ -210,42 +186,19 @@ export default class TaskEditor extends React.Component {
 
           {/* Reminder */}
           {/* Inputs are disabled until type is set */}
-          <p className="label">Lembrete</p>
-          <div className="radio-inputs-container">
-            <div>
-              <input
-                type="radio"
-                id="radio-remember-yes"
-                name="reminder"
-                checked={state.reminder === true}
-                disabled={state.recurring === null}
-                onChange={() => this.setState({ reminder: true })}
-              />
-              <label
-                htmlFor="radio-remember-yes"
-                className={state.recurring === null ? "disabled" : null}
-              >
-                Sim
-              </label>
-            </div>
-
-            <div>
-              <input
-                type="radio"
-                id="radio-remember-no"
-                name="reminder"
-                checked={state.reminder === false}
-                disabled={state.recurring === null}
-                onChange={() => this.setState({ reminder: false })}
-              />
-              <label
-                htmlFor="radio-remember-no"
-                className={state.recurring === null ? "disabled" : null}
-              >
-                Não
-              </label>
-            </div>
-          </div>
+          <p className="editor-label">Lembrete</p>
+          <Select disabled={state.recurring === null}>
+            <Option
+              text="Sim"
+              selected={state.reminder === true}
+              onClick={() => this.setState({ reminder: true })}
+            />
+            <Option
+              text="Não"
+              selected={state.reminder === false}
+              onClick={() => this.setState({ reminder: false })}
+            />
+          </Select>
 
           {/* Set date (when the task is not recurring) */}
           {state.reminder && !state.recurring && (
@@ -274,13 +227,13 @@ export default class TaskEditor extends React.Component {
           )}
 
           <hr />
-          <div className="buttons">
+          <div className="editor-footer">
             {this.props.editing && (
-              <button className="delete" onClick={this.deleteTask}>
+              <button className="editor-footer-btn" onClick={this.deleteTask}>
                 Excluir
               </button>
             )}
-            <button className="save" onClick={this.saveTask}>
+            <button className="editor-footer-btn" onClick={this.saveTask}>
               Salvar
             </button>
           </div>

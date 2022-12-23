@@ -1,10 +1,11 @@
 export default function MainNavItem(props) {
-    return (
-        <div
-            onClick={() => props.onClick(props.name)}
-            style={props.selected === props.name ? { backgroundColor: "var(--clr-primary)" } : null}
-        >
-            {props.children}
-        </div>
-    );
+  return (
+    <div
+      className={"main-nav-item " + (props.selected === props.name ? "selected" : "")}
+      onClick={() => props.onClick(props.name)}
+    >
+      <img src={props.imgSrc} />
+      <p>{props.text}</p>
+    </div>
+  );
 }

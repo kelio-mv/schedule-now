@@ -4,25 +4,25 @@ import MainArea from "./components/MainArea";
 import "./App.css";
 
 export default function App() {
-    const [display, setDisplay] = useState("today");
-    const mainAreaRef = useRef();
-    // If there is no attribute "tasks" in localStorage then create one
-    if (!localStorage.tasks) {
-        localStorage.setItem("tasks", "[]");
-    }
-    // Ask for notification permission
-    Notification.requestPermission();
+  const [display, setDisplay] = useState("today");
+  const mainAreaRef = useRef();
+  // If there is no attribute "tasks" in localStorage then create one
+  if (!localStorage.tasks) {
+    localStorage.setItem("tasks", "[]");
+  }
+  // Ask for notification permission
+  Notification.requestPermission();
 
-    return (
-        <>
-            <MainNav
-                selected={display}
-                onChange={(name) => setDisplay(name)}
-                displayEditor={() => mainAreaRef.current.setState({ displayEditor: true })}
-            />
-            <MainArea ref={mainAreaRef} display={display} />
-        </>
-    );
+  return (
+    <>
+      <MainNav
+        selected={display}
+        onChange={(name) => setDisplay(name)}
+        displayEditor={() => mainAreaRef.current.setState({ displayEditor: true })}
+      />
+      <MainArea ref={mainAreaRef} display={display} />
+    </>
+  );
 }
 
 // Adicionar icone nas notif

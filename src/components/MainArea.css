@@ -7,7 +7,7 @@
 
 /* ---------- Task ---------- */
 
-#main-area .task {
+.task {
     display: flex;
     align-items: center;
     gap: 0.75rem;
@@ -16,35 +16,31 @@
     pointer-events: none;
 }
 
-#main-area .task:hover {
-    background-color: var(--clr-primary-light);
+.task:hover {
+    background-color: #ddd;
     cursor: pointer;
 }
 
-#main-area .task .type-img {
+.task .task-type-img {
     width: 24px;
-    opacity: 0.6;
+    opacity: 0.5;
 }
 
-#main-area .task .info,
-#main-area .task .status-img {
+.task .task-info,
+.task .task-status-img {
     pointer-events: auto;
 }
 
-#main-area .task .name {
+.task .task-name {
     font-size: var(--fs-medium-large);
     font-weight: 500;
 }
 
-#main-area .task .time {
+.task .task-time {
     color: var(--clr-neutral);
     font-size: var(--fs-medium-small);
 }
 
-#main-area .task .grow {
-    flex-grow: 1;
-}
-
-#main-area .task .status-img {
+.task .task-status-img {
     width: 32px;
 }

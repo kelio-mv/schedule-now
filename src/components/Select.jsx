@@ -1,7 +1,9 @@
 import "./Select.css";
 
 export function Select(props) {
-  return <div className={"select " + (props.disabled ? "disabled" : "")}>{props.children}</div>;
+  return (
+    <div className={"select mx-auto " + (props.disabled ? "disabled" : "")}>{props.children}</div>
+  );
 }
 
 export function Option(props) {

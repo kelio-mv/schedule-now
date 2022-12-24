@@ -1,12 +1,6 @@
 .select {
     display: flex;
     width: max-content;
-    margin-left: auto;
-    margin-right: auto;
-    background-color: #fff;
-    border: 1px solid var(--clr-primary-dark);
-    border-radius: var(--border-radius);
-    overflow: hidden;
 }
 
 .select.disabled {
@@ -16,13 +10,15 @@
 
 .select .option {
     padding: 0.3rem 0.5rem;
+    background-color: #fff;
     color: var(--clr-primary-dark);
     font-weight: 500;
+    border: 1px solid var(--clr-primary-dark);
     cursor: pointer;
 }
 
-.select .option:not(:last-child) {
-    border-right: 1px solid var(--clr-primary-dark);
+.select .option:not(:first-child) {
+    border-left: none;
 }
 
 .select .option:hover {
@@ -32,4 +28,8 @@
 .select .option.selected {
     background-color: var(--clr-primary-dark);
     color: white;
+}
+
+.select .option.selected:not(:last-child) {
+    border-right: 1px solid rgb(255, 255, 255, 0.25);
 }

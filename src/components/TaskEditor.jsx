@@ -1,5 +1,6 @@
 import React from "react";
-import { Select, Option } from "./Select.jsx";
+import { Select, Option } from "./Select";
+import { DateInput, TimeInput } from "./DateTimeInput";
 import "./TaskEditor.css";
 
 export default class TaskEditor extends React.Component {
@@ -12,8 +13,8 @@ export default class TaskEditor extends React.Component {
       frequency: null,
       scheduledDays: [],
       reminder: null,
-      time: "",
-      date: "",
+      time: ":",
+      date: "--",
     };
     if (props.editing) {
       this.state = { ...this.state, ...JSON.parse(localStorage.tasks)[props.taskIndex] };
@@ -202,31 +203,16 @@ export default class TaskEditor extends React.Component {
 
           {/* Set date (when the task is not recurring) */}
           {state.reminder && !state.recurring && (
-            <input
-              type="date"
-              value={state.date}
-              onChange={(e) =>
-                this.setState({
-                  date: e.target.value,
-                })
-              }
-            />
+            <DateInput value={state.date} onChange={(date) => this.setState({ date })} />
           )}
 
           {/* Set time */}
           {state.reminder && (
-            <input
-              type="time"
-              value={state.time}
-              onChange={(e) =>
-                this.setState({
-                  time: e.target.value,
-                })
-              }
-            ></input>
+            <TimeInput value={state.time} onChange={(time) => this.setState({ time })} />
           )}
-
           <hr />
+
+          {/* Footer */}
           <div className="editor-footer">
             {this.props.editing && (
               <button className="editor-footer-btn" onClick={this.deleteTask}>

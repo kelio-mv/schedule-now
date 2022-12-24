@@ -1,0 +1,21 @@
+.datetime-input {
+    display: flex;
+    width: max-content;
+    background: white;
+    border: 1px solid var(--clr-primary-dark);
+}
+
+.datetime-input input {
+    width: 2.75em;
+    height: 2em;
+    background: transparent;
+    color: var(--clr-primary-dark);
+    font: inherit;
+    text-align: center;
+    border: none;
+    outline: none;
+}
+
+.datetime-input input:not(:last-child) {
+    border-right: 1px solid var(--clr-primary-dark);
+}

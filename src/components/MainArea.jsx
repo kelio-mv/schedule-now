@@ -26,7 +26,7 @@ export default class MainArea extends React.Component {
   runNotifier = () => {
     const currentDate = new Date().toLocaleDateString();
     const currentTime = new Date().toLocaleTimeString().slice(0, 5);
-    const notifBody = `ScheduleNow - ${currentTime}`;
+    const notifOptions = { body: `ScheduleNow - ${currentTime}`, icon: "today.png" };
     const tasks = JSON.parse(localStorage.tasks);
     let lateTasks = 0;
 
@@ -39,6 +39,7 @@ export default class MainArea extends React.Component {
         new Date().getTime() >= new Date(`${task.date}T${task.time}`).getTime()
       ) {
         new Notification(task.name, {
+          ...notifOptions,
           body: `Schedule Now - ${task.date.split("-").reverse().join("/")} ${task.time}`,
         });
         task.lastNotification = currentDate;
@@ -49,7 +50,7 @@ export default class MainArea extends React.Component {
           (task.frequency === "weekly" && task.scheduledDays.includes(new Date().getDay())))
       ) {
         if (task.time === currentTime) {
-          new Notification(task.name, { body: notifBody });
+          new Notification(task.name, notifOptions);
           task.lastNotification = currentDate;
         } else if (
           new Date(`2022-01-01T${currentTime}`).getTime() >
@@ -61,9 +62,7 @@ export default class MainArea extends React.Component {
       }
     });
     if (lateTasks > 0) {
-      new Notification(`Você tem ${lateTasks} tarefa(s) pendente(s).`, {
-        body: notifBody,
-      });
+      new Notification(`Você tem ${lateTasks} tarefa(s) pendente(s).`, notifOptions);
     }
     // If something changed localStorage will be updated
     if (JSON.stringify(tasks) !== localStorage.tasks) {

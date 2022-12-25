@@ -25,10 +25,9 @@ export default function App() {
   );
 }
 
-// Adicionar icone nas notif
-// Melhorar design do date & time ou criar componentes
+// Adicionar icone nas notif e no site
 // Avisar sobre importância de ativar notificação
 
 // Feedback Vinicius:
 // tive dificuldade em entender o ícone de incompleto,
-// ver se o lembrete foi criado ou não e onde ficou e
+// ver se o lembrete foi criado ou não e onde ficou

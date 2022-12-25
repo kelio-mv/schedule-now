@@ -215,11 +215,11 @@ export default class TaskEditor extends React.Component {
           {/* Footer */}
           <div className="editor-footer">
             {this.props.editing && (
-              <button className="editor-footer-btn" onClick={this.deleteTask}>
+              <button className="editor-footer-btn-delete" onClick={this.deleteTask}>
                 Excluir
               </button>
             )}
-            <button className="editor-footer-btn" onClick={this.saveTask}>
+            <button className="editor-footer-btn-save" onClick={this.saveTask}>
               Salvar
             </button>
           </div>

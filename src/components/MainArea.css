@@ -34,11 +34,18 @@
 .task .task-name {
     font-size: var(--fs-medium-large);
     font-weight: 500;
+    margin-bottom: 4px;
 }
 
 .task .task-time {
     color: var(--clr-neutral);
     font-size: var(--fs-medium-small);
+}
+
+.task .task-time>* {
+    padding: 0px 4px;
+    border: 1px solid #ccc;
+    border-radius: var(--border-radius);
 }
 
 .task .task-status-img {

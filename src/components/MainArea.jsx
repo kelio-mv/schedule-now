@@ -152,7 +152,7 @@ export default class MainArea extends React.Component {
           <TaskEditor
             editing={this.state.editing}
             taskIndex={this.state.currentTaskIndex}
-            closeModal={() =>
+            onClose={() =>
               this.setState({
                 displayEditor: false,
                 editing: false,

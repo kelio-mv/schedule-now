@@ -30,3 +30,6 @@ export default function App() {
 // Feedback Vinicius:
 // tive dificuldade em entender o ícone de incompleto,
 // ver se o lembrete foi criado ou não e onde ficou
+
+//  Mostrar icone do app grandao
+//

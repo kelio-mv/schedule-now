@@ -21,6 +21,15 @@ export default class TaskEditor extends React.Component {
     }
 
     this.weekDays = ["Dom", "Seg", "Ter", "Qua", "Qui", "Sex", "Sáb"];
+    this.modalRef = React.createRef();
+    this.modalContentRef = React.createRef();
+  }
+
+  componentDidMount() {
+    setTimeout(() => {
+      this.modalRef.current.classList.remove("disabled");
+      this.modalContentRef.current.classList.remove("disabled");
+    });
   }
 
   handleWeekDayChange = (day, checked) => {
@@ -106,25 +115,31 @@ export default class TaskEditor extends React.Component {
       newTasks = [...newTasks, task];
     }
     localStorage.setItem("tasks", JSON.stringify(newTasks));
-    this.props.closeModal();
+    this.closeEditor();
   };
 
   deleteTask = () => {
     const newTasks = JSON.parse(localStorage.tasks);
     newTasks.splice(this.props.taskIndex, 1);
     localStorage.setItem("tasks", JSON.stringify(newTasks));
-    this.props.closeModal();
+    this.closeEditor();
+  };
+
+  closeEditor = () => {
+    this.modalContentRef.current.classList.add("disabled");
+    this.modalRef.current.classList.add("disabled");
+    setTimeout(() => this.props.onClose(), 330);
   };
 
   render() {
     const state = this.state;
 
     return (
-      <div className="modal">
-        <div className="modal-content">
+      <div ref={this.modalRef} className="modal disabled">
+        <div ref={this.modalContentRef} className="modal-content disabled">
           {/* Name */}
           <p className="editor-label">Nome</p>
-          <img src="close.png" className="editor-close-btn" onClick={this.props.closeModal} />
+          <img src="close.png" className="editor-close-btn" onClick={this.closeEditor} />
 
           <input
             className="editor-task-name"

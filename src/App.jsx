@@ -25,7 +25,6 @@ export default function App() {
   );
 }
 
-// Adicionar icone nas notif e no site
 // Avisar sobre importância de ativar notificação
 
 // Feedback Vinicius:

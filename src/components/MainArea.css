@@ -37,6 +37,10 @@
     margin-bottom: 4px;
 }
 
+.task .task-name.checked {
+    color: var(--clr-neutral);
+}
+
 .task .task-time {
     color: var(--clr-neutral);
     font-size: var(--fs-small);

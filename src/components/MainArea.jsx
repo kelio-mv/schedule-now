@@ -1,6 +1,7 @@
 import React from "react";
 import Task from "./Task";
 import TaskEditor from "./TaskEditor";
+import NoTaskScreen from "./NoTaskScreen";
 import "./MainArea.css";
 
 export default class MainArea extends React.Component {
@@ -109,6 +110,61 @@ export default class MainArea extends React.Component {
     return sortedTasks;
   }
 
+  shouldRenderTask(task) {
+    switch (this.props.display) {
+      case "today":
+        if (task.recurring) {
+          switch (task.frequency) {
+            case "daily":
+              return true;
+
+            case "weekly":
+              return task.scheduledDays.includes(new Date().getDay());
+
+            default:
+              return false;
+          }
+        } else {
+          if (!task.reminder) return false;
+          const [year, month, day] = task.date.split("-").map((e) => parseInt(e));
+          const currentDate = new Date();
+          return (
+            year === currentDate.getFullYear() &&
+            month === currentDate.getMonth() + 1 &&
+            day === currentDate.getDate()
+          );
+        }
+
+      case "tasks":
+        return !task.recurring;
+
+      case "recurring-tasks":
+        return task.recurring;
+
+      default:
+        return false;
+    }
+  }
+
+  getTasksJSX() {
+    let tasks = this.state.tasks.filter((task) => this.shouldRenderTask(task));
+    tasks = tasks.map((task) => (
+      <Task
+        key={task.index}
+        openTask={() =>
+          this.setState({
+            displayEditor: true,
+            editing: true,
+            currentTaskIndex: task.index,
+          })
+        }
+        changeStatus={() => this.changeStatus(task.index)}
+        {...task}
+      />
+    ));
+    return tasks.length === 0 ? <NoTaskScreen display={this.props.display} /> : tasks;
+  }
+
   changeStatus(taskIndex) {
     const newTasks = JSON.parse(localStorage.tasks);
     const currentStatus = newTasks[taskIndex].status;
@@ -133,21 +189,8 @@ export default class MainArea extends React.Component {
     // based on what is being displayed.
     return (
       <main id="main-area">
-        {this.state.tasks.map((task) => (
-          <Task
-            key={task.index}
-            display={this.props.display}
-            openTask={() =>
-              this.setState({
-                displayEditor: true,
-                editing: true,
-                currentTaskIndex: task.index,
-              })
-            }
-            changeStatus={() => this.changeStatus(task.index)}
-            {...task}
-          />
-        ))}
+        {this.getTasksJSX()}
+
         {this.state.displayEditor && (
           <TaskEditor
             editing={this.state.editing}

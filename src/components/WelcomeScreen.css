@@ -1,4 +1,4 @@
-#first-time-screen {
+#welcome-screen {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -7,19 +7,19 @@
     height: 100vh;
 }
 
-#first-time-screen .logo {
+#welcome-screen .logo {
     width: 128px;
     margin-bottom: var(--fs-largest);
 }
 
-#first-time-screen .title {
+#welcome-screen .title {
     color: #444;
     font-size: var(--fs-largest);
     font-weight: 600;
     margin-bottom: var(--fs-largest);
 }
 
-#first-time-screen p {
+#welcome-screen p {
     max-width: 720px;
     font-size: var(--fs-large);
     margin-bottom: 1rem;
@@ -27,7 +27,7 @@
     text-align: center;
 }
 
-#first-time-screen .start-btn {
+#welcome-screen .start-btn {
     padding: 0.5rem 0.8rem;
     margin-top: var(--fs-largest);
     background: var(--clr-primary-dark);
@@ -41,6 +41,6 @@
     cursor: pointer;
 }
 
-#first-time-screen .start-btn:hover {
+#welcome-screen .start-btn:hover {
     opacity: 0.8;
 }

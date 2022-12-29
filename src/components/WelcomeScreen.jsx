@@ -4,7 +4,7 @@ export default function Tutorial(props) {
   Notification.requestPermission();
 
   return (
-    <div id="first-time-screen">
+    <div id="welcome-screen">
       <img className="logo" src="today.png" />
       <h1 className="title">Seja bem-vindo(a)</h1>
       <p>

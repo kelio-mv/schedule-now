@@ -41,7 +41,7 @@
 }
 
 .editor-label {
-    font-size: var(--fs-medium-large);
+    font-size: var(--fs-large);
     font-weight: 500;
 }
 
@@ -82,7 +82,7 @@
     padding: 0.3rem 0.5rem;
     color: white;
     font: inherit;
-    font-size: var(--fs-medium-large);
+    font-size: var(--fs-large);
     border: none;
     border-radius: var(--border-radius);
     cursor: pointer;

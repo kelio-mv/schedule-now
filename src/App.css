@@ -11,9 +11,10 @@
     --clr-neutral-light: #bbb;
     --clr-neutral-dark: #444;
     /* Font */
-    --fs-medium-small: 15px;
+    --fs-small: 15px;
     --fs-medium: 17px;
-    --fs-medium-large: 19px;
+    --fs-large: 19px;
+    --fs-largest: 24px;
     --line-height: 1.25;
     /* Others */
     --border-radius: 8px;

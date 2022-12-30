@@ -18,6 +18,7 @@ export default class TaskEditor extends React.Component {
     };
     if (props.editing) {
       this.state = { ...this.state, ...JSON.parse(localStorage.tasks)[props.taskIndex] };
+      this.initialState = { ...this.state };
     }
 
     this.weekDays = ["Dom", "Seg", "Ter", "Qua", "Qui", "Sex", "Sáb"];
@@ -242,7 +243,14 @@ export default class TaskEditor extends React.Component {
                 Excluir
               </button>
             )}
-            <button className="editor-footer-btn-save" onClick={this.saveTask}>
+            <button
+              className="editor-footer-btn-save"
+              disabled={
+                this.props.editing &&
+                JSON.stringify(this.state) === JSON.stringify(this.initialState)
+              }
+              onClick={this.saveTask}
+            >
               Salvar
             </button>
           </div>

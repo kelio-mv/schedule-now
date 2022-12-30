@@ -17,5 +17,5 @@
 }
 
 .datetime-input input:not(:last-child) {
-    border-right: 1px solid var(--clr-primary-dark);
+    border-right: 1px solid var(--clr-neutral);
 }

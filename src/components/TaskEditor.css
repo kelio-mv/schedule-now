@@ -79,17 +79,21 @@
 }
 
 [class*="editor-footer-btn"] {
-    padding: 0.3rem 0.5rem;
+    padding: 5px 9px;
     color: white;
     font: inherit;
     font-size: var(--fs-large);
     border: none;
     border-radius: var(--border-radius);
+}
+
+[class*="editor-footer-btn"]:hover:not(:disabled) {
+    opacity: 0.8;
     cursor: pointer;
 }
 
-[class*="editor-footer-btn"]:hover {
-    opacity: 0.8;
+[class*="editor-footer-btn"]:disabled {
+    background: #999;
 }
 
 .editor-footer-btn-delete {

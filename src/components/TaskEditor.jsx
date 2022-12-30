@@ -45,10 +45,13 @@ export default class TaskEditor extends React.Component {
 
   saveTask = () => {
     // Check name
-    if (this.state.name.length === 0) {
-      alert("Defina um nome para sua tarefa!");
+    this.state.name = this.state.name.trim(); // remove if there is a space at the end
+
+    if (this.state.name.length < 3) {
+      alert("O nome da sua tarefa deve ter pelo menos 3 caracteres!");
       return;
     }
+
     // Check type
     if (this.state.recurring === null) {
       alert("Defina um tipo para sua tarefa!");
@@ -74,13 +77,13 @@ export default class TaskEditor extends React.Component {
       return;
     }
     // Check time if reminder is enabled
-    if (this.state.reminder && !this.state.time) {
-      alert("Defina um horário pro lembrete!");
+    if (this.state.reminder && this.state.time.length < 5) {
+      alert("Defina um horário válido pro lembrete!");
       return;
     }
     // Check date if reminder is enabled and type is not recurring
-    if (this.state.reminder && !this.state.recurring && !this.state.date) {
-      alert("Defina uma data pro lembrete!");
+    if (this.state.reminder && !this.state.recurring && this.state.date.length < 10) {
+      alert("Defina uma data válida pro lembrete!");
       return;
     }
     // If no errors are found then setup the task object
@@ -145,7 +148,12 @@ export default class TaskEditor extends React.Component {
             className="editor-task-name"
             type="text"
             value={state.name}
-            onInput={(e) => this.setState({ name: e.target.value })}
+            onInput={(e) => {
+              let value = e.target.value;
+              value = value.trim() + (value.length > 1 && value.endsWith(" ") ? " " : "");
+              value = value.slice(0, 50);
+              this.setState({ name: value });
+            }}
           />
           <hr />
 

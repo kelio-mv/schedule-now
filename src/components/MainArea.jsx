@@ -146,7 +146,7 @@ export default class MainArea extends React.Component {
     }
   }
 
-  getTasksJSX() {
+  getMainAreaContent() {
     let tasks = this.state.tasks.filter((task) => this.shouldRenderTask(task));
     tasks = tasks.map((task) => (
       <Task
@@ -189,7 +189,7 @@ export default class MainArea extends React.Component {
     // based on what is being displayed.
     return (
       <main id="main-area">
-        {this.getTasksJSX()}
+        {this.getMainAreaContent()}
 
         {this.state.displayEditor && (
           <TaskEditor

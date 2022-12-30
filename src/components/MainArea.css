@@ -26,8 +26,8 @@
     opacity: 0.5;
 }
 
-.task .task-info,
-.task .task-status-img {
+.task .task-info {
+    overflow: hidden;
     pointer-events: auto;
 }
 
@@ -35,6 +35,8 @@
     font-size: var(--fs-large);
     font-weight: 500;
     margin-bottom: 4px;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .task .task-name.checked {
@@ -54,4 +56,5 @@
 
 .task .task-status-img {
     width: 32px;
+    pointer-events: auto;
 }

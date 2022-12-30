@@ -26,4 +26,4 @@ export default function App() {
 }
 
 // Mostrar aviso ao: criar tarefa, editar tarefa, excluir tarefa
-// Bug da data e hora
+// Bug da data e hora e trim

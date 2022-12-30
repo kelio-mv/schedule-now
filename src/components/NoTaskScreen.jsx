@@ -8,7 +8,7 @@ export default function NoTaskScreen(props) {
       <div id="no-task-screen">
         <img src="new-task.png" />
         <p>Hum... Parece que você não tem nenhuma tarefa.</p>
-        <p>Clique em "Nova tarefa" para criar uma.</p>
+        <p>Clique em "Nova tarefa" na barra de navegação para criar uma.</p>
       </div>
     );
   } else {

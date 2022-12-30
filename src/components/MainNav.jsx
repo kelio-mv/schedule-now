@@ -10,7 +10,7 @@ export default function MainNav(props) {
   return (
     <nav id="main-nav">
       <NavItem text="Hoje" imgSrc="today.png" name="today" {...childProps} />
-      <NavItem text="Tarefas" imgSrc="task.png" name="tasks" {...childProps} />
+      <NavItem text="Tarefas comuns" imgSrc="task.png" name="tasks" {...childProps} />
       <NavItem
         text="Tarefas recorrentes"
         imgSrc="recurring.png"

@@ -2,6 +2,7 @@ import React from "react";
 import Task from "./Task";
 import TaskEditor from "./TaskEditor";
 import NoTaskScreen from "./NoTaskScreen";
+import EventNotification from "./EventNotification";
 import "./MainArea.css";
 
 export default class MainArea extends React.Component {
@@ -12,6 +13,7 @@ export default class MainArea extends React.Component {
       displayEditor: false,
       editing: false,
       currentTaskIndex: null,
+      eventMessage: null,
     };
   }
 
@@ -195,16 +197,20 @@ export default class MainArea extends React.Component {
           <TaskEditor
             editing={this.state.editing}
             taskIndex={this.state.currentTaskIndex}
-            onClose={() =>
+            onClose={(eventMessage) => {
               this.setState({
                 displayEditor: false,
                 editing: false,
                 currentTaskIndex: null,
                 tasks: this.getTasks(),
-              })
-            }
+                eventMessage,
+              });
+              setTimeout(() => this.setState({ eventMessage: null }), 3500);
+            }}
           />
         )}
+
+        {this.state.eventMessage && <EventNotification text={this.state.eventMessage} />}
       </main>
     );
   }

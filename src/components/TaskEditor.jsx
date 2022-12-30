@@ -115,24 +115,25 @@ export default class TaskEditor extends React.Component {
 
     if (this.props.editing) {
       newTasks[this.props.taskIndex] = task;
+      this.closeEditor("Tarefa editada");
     } else {
       newTasks = [...newTasks, task];
+      this.closeEditor("Tarefa criada");
     }
     localStorage.setItem("tasks", JSON.stringify(newTasks));
-    this.closeEditor();
   };
 
   deleteTask = () => {
     const newTasks = JSON.parse(localStorage.tasks);
     newTasks.splice(this.props.taskIndex, 1);
     localStorage.setItem("tasks", JSON.stringify(newTasks));
-    this.closeEditor();
+    this.closeEditor("Tarefa excluída");
   };
 
-  closeEditor = () => {
+  closeEditor = (eventMessage) => {
     this.modalContentRef.current.classList.add("disabled");
     this.modalRef.current.classList.add("disabled");
-    setTimeout(() => this.props.onClose(), 330);
+    setTimeout(() => this.props.onClose(eventMessage || null), 330);
   };
 
   render() {
@@ -143,7 +144,7 @@ export default class TaskEditor extends React.Component {
         <div ref={this.modalContentRef} className="modal-content disabled">
           {/* Name */}
           <p className="editor-label">Nome</p>
-          <img src="close.png" className="editor-close-btn" onClick={this.closeEditor} />
+          <img src="close.png" className="editor-close-btn" onClick={() => this.closeEditor()} />
 
           <input
             className="editor-task-name"
